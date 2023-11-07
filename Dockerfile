@@ -8,8 +8,8 @@ RUN pip install --no-cache-dir --upgrade -r ./requirements.txt
 
 COPY ./main.py .
 
-ARG API_PORT=80
+ARG API_PORT="80"
 ENV REDIS_ADD='redis-api-cache'
 ENV MAIN_LOC='Tehran'
 
-CMD ["uvicorn", "main:app", "--proxy-headers", "--host", "0.0.0.0", "--port", "${API_PORT}"]
+CMD uvicorn main:app --proxy-headers --host 0.0.0.0 --port ${API_PORT}

@@ -5,9 +5,9 @@ import redis
 import os
 
 # To be configurable
-REDIS_ADD = os.getenv('REDIS_ADD', '192.168.2.145')
-MAIN_LOC = os.getenv('MAIN_LOC', 'Tehran')
-API_KEY = os.getenv('API_KEY')
+REDIS_ADD = os.getenv('REDIS_ADD')
+MAIN_LOC = os.getenv('MAIN_LOC')
+WEATHER_API_KEY = os.getenv('API_KEY')
 
 r = redis.Redis(host=REDIS_ADD, port=6379, decode_responses=True)
 app = FastAPI()

@@ -1,0 +1,103 @@
+[
+    {
+        "Id": "sha256:1c6cc80de5c662b98f127cb28931f15748da9affe1c13b63ebece58ef2aa7ee7",
+        "RepoTags": [
+            "weatherapi:1.0"
+        ],
+        "RepoDigests": [],
+        "Parent": "",
+        "Comment": "buildkit.dockerfile.v0",
+        "Created": "2023-11-07T18:28:17.593732849-05:00",
+        "Container": "",
+        "ContainerConfig": {
+            "Hostname": "",
+            "Domainname": "",
+            "User": "",
+            "AttachStdin": false,
+            "AttachStdout": false,
+            "AttachStderr": false,
+            "Tty": false,
+            "OpenStdin": false,
+            "StdinOnce": false,
+            "Env": null,
+            "Cmd": null,
+            "Image": "",
+            "Volumes": null,
+            "WorkingDir": "",
+            "Entrypoint": null,
+            "OnBuild": null,
+            "Labels": null
+        },
+        "DockerVersion": "",
+        "Author": "",
+        "Config": {
+            "Hostname": "",
+            "Domainname": "",
+            "User": "",
+            "AttachStdin": false,
+            "AttachStdout": false,
+            "AttachStderr": false,
+            "Tty": false,
+            "OpenStdin": false,
+            "StdinOnce": false,
+            "Env": [
+                "PATH=/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+                "LANG=C.UTF-8",
+                "GPG_KEY=A035C8C19219BA821ECEA86B64E628F8D684696D",
+                "PYTHON_VERSION=3.11.6",
+                "PYTHON_PIP_VERSION=23.2.1",
+                "PYTHON_SETUPTOOLS_VERSION=65.5.1",
+                "PYTHON_GET_PIP_URL=https://github.com/pypa/get-pip/raw/c6add47b0abf67511cdfb4734771cbab403af062/public/get-pip.py",
+                "PYTHON_GET_PIP_SHA256=22b849a10f86f5ddf7ce148ca2a31214504ee6c83ef626840fde6e5dcd809d11",
+                "REDIS_ADD=redis-api-cache",
+                "MAIN_LOC=Tehran"
+            ],
+            "Cmd": [
+                "/bin/sh",
+                "-c",
+                "uvicorn main:app --proxy-headers --host 0.0.0.0 --port ${API_PORT}"
+            ],
+            "ArgsEscaped": true,
+            "Image": "",
+            "Volumes": null,
+            "WorkingDir": "/usr/src/app",
+            "Entrypoint": null,
+            "OnBuild": null,
+            "Labels": null
+        },
+        "Architecture": "amd64",
+        "Os": "linux",
+        "Size": 1059692699,
+        "VirtualSize": 1059692699,
+        "GraphDriver": {
+            "Data": {
+                "LowerDir": "/var/lib/docker/overlay2/bm60j2tm62hjkla64xpipevpg/diff:/var/lib/docker/overlay2/liqedt6vplciatavvuk0cuzbb/diff:/var/lib/docker/overlay2/6vtud9sie63sggdiciu496h2t/diff:/var/lib/docker/overlay2/lv0zwor1u42pqouhttq9jtivs/diff:/var/lib/docker/overlay2/272e8af5359acb1078fe238ff6b6b90d33fc00dfc448ea419aca112dad3bb96d/diff:/var/lib/docker/overlay2/6a51c8e860acd3939ec31645e0bfae939704d813f0642ed84d7073813c93f114/diff:/var/lib/docker/overlay2/8ccc7eb4f3f22b319e07fd69d19c10d5c0ca22a3565e9f917cb9259f39e47f6f/diff:/var/lib/docker/overlay2/be6b7a627ab90d2501f21e790473048e8530d77d0f1ba0bfdfd8ee93a9516838/diff:/var/lib/docker/overlay2/281235efede4587cc586b7d6bee5eedcc73e896cb245a58b5508a3ff90c451f6/diff:/var/lib/docker/overlay2/0f43ca676c0f66aa1b38fc52c337b9a7cd03faf549525e9343a0ca0044bdb5af/diff:/var/lib/docker/overlay2/96418cbe25b48e61e483c582481ff776d4710c04a447e87bdecf1cc58715d0f1/diff:/var/lib/docker/overlay2/86ef6d52de4163309b8817aadde936996bf41647b06cfbbb45c82359c1bc6eb2/diff",
+                "MergedDir": "/var/lib/docker/overlay2/l3u49uecm7qypew4vc6gner8z/merged",
+                "UpperDir": "/var/lib/docker/overlay2/l3u49uecm7qypew4vc6gner8z/diff",
+                "WorkDir": "/var/lib/docker/overlay2/l3u49uecm7qypew4vc6gner8z/work"
+            },
+            "Name": "overlay2"
+        },
+        "RootFS": {
+            "Type": "layers",
+            "Layers": [
+                "sha256:2fa37f2ee66efbd308b9b91bce81c262f5e6ab6c3bf8056632afc60cc602785c",
+                "sha256:5cc3a4df1251c008ebfaaf8c48fe7bd61f0b0fdd7273966bd4bbe58877337e06",
+                "sha256:2ef3351afa6d94a8874a6af5aa1bafcd85106616ced8ac63112022fb04232d03",
+                "sha256:0c2d6fc19d6af33b608be1cccf7c50a78abcde56fdadc402edee9c2bf89b39bb",
+                "sha256:d3de4ba9f72c0f45112f9993bd617bba8bfb299420e526074a0748d35f44b0cb",
+                "sha256:c2bd3ea4f31a51fa65f803bd272cc19df13599cb6b326328045ae6d8fabd64d5",
+                "sha256:e953c014edfa0be5875f63bd63c9686ffed06e5b0c204604737c0d7d3519bebe",
+                "sha256:f8f3073ee6ab42ab24b44b1cf035e47f72b751c1f38c519eb878b120644cacb1",
+                "sha256:af259b6f231f470f4860c601b987898e3882e07080bed1ed0ed8db4af6635baf",
+                "sha256:15da9106bbe385e3121532deabed74e1c0f9b30bf5be6054e32e8feb91fba580",
+                "sha256:d6262766b21294def3c59f1f8b721b3408e5d2065e10d9ef17cbce1fe606b5c7",
+                "sha256:9e2315f7b0dabcd531309cc024d097937d0406fe634e28a3719b3de2e4508196",
+                "sha256:7127ff15790cb0fd7e5d0a495a1289e099cdfdea5bfdc2658be927ada530cc87"
+            ]
+        },
+        "Metadata": {
+            "LastTagTime": "2023-11-07T18:31:58.807289857-05:00"
+        }
+    }
+]

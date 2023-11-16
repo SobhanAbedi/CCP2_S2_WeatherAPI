@@ -11,5 +11,6 @@ COPY ./main.py .
 ARG API_PORT="80"
 ENV REDIS_ADD='redis-api-cache'
 ENV MAIN_LOC='Tehran'
+ENV CACHE_TIME = 300
 
 CMD uvicorn main:app --proxy-headers --host 0.0.0.0 --port ${API_PORT}

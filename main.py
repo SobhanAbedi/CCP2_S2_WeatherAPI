@@ -8,6 +8,7 @@ import os
 REDIS_ADD = os.getenv('REDIS_ADD')
 MAIN_LOC = os.getenv('MAIN_LOC')
 WEATHER_API_KEY = os.getenv('WEATHER_API_KEY')
+CACHE_TIME = os.getenv('CACHE_TIME')
 
 r = redis.Redis(host=REDIS_ADD, port=6379, decode_responses=True)
 app = FastAPI()
@@ -42,6 +43,6 @@ async def get_weather(city: str):
     print(full_resp)
 
     new_resp = extract_data(full_resp.json())
-    r.setex(city, 300, str(new_resp))
+    r.setex(city, CACHE_TIME, str(new_resp))
 
     return new_resp

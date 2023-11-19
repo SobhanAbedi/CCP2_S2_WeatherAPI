@@ -15,8 +15,7 @@ services:
       redis_net:
         aliases: []
     depends_on:
-      redis-api-cache:
-        condition: service_completed_successfully
+      - redis-api-cache
   redis-api-cache:
     image: "redis:alpine3.18"
     command: redis-server --save 60 1 --loglevel warning

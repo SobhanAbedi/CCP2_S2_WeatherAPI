@@ -4,6 +4,7 @@ import requests
 import json
 import redis
 import os
+import platform
 
 # To be configurable
 REDIS_ADD = os.getenv('REDIS_ADD')
@@ -30,7 +31,8 @@ async def get_weather(request: Request, city: str):
     cached_resp = r.get(city)
     if cached_resp is not None:
         resp = json.loads(cached_resp)
-        resp['pod'] = request.get('host')
+        resp['type'] = 'Cached'
+        resp['pod'] = request.headers.get('host')
         return resp
 
     if WEATHER_API_KEY is None:
@@ -46,8 +48,7 @@ async def get_weather(request: Request, city: str):
     # print(full_resp.json())
 
     new_resp = extract_data(full_resp.json())
-    new_resp['type'] = 'Cached'
     r.setex(city, CACHE_TIME, json.dumps(new_resp))
     new_resp['type'] = 'Hot'
-    new_resp['pod'] = request.headers.get('host')
+    new_resp['pod'] = platform.uname()[1]
     return new_resp

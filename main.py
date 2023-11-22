@@ -1,6 +1,7 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 from typing import Dict
 import requests
+import json
 import redis
 import os
 
@@ -19,16 +20,18 @@ def extract_data(weather_stats: Dict) -> Dict:
 
 
 @app.get("/")
-async def get_main_weather():
-    resp = await get_weather(MAIN_LOC)
+async def get_main_weather(request: Request):
+    resp = await get_weather(request, MAIN_LOC)
     return resp
 
 
 @app.get("/{city}")
-async def get_weather(city: str):
-    cached_resp = r.get(city)
+async def get_weather(request: Request, city: str):
+    cached_resp = await r.get(city)
     if cached_resp is not None:
-        return cached_resp
+        resp = json.loads(cached_resp)
+        resp['pod'] = request.get('host')
+        return resp
 
     if WEATHER_API_KEY is None:
         return {'message', "Sorry, We can't resolve your request right now. Please retry in a few hours."}
@@ -40,9 +43,11 @@ async def get_weather(city: str):
         "X-RapidAPI-Host": "weatherapi-com.p.rapidapi.com"
     }
     full_resp = requests.get(url, headers=headers, params=querystring)
-    print(full_resp)
+    # print(full_resp.json())
 
     new_resp = extract_data(full_resp.json())
-    r.setex(city, CACHE_TIME, str(new_resp))
-
+    new_resp['type'] = 'Cached'
+    r.setex(city, CACHE_TIME, json.dumps(new_resp))
+    new_resp['type'] = 'Hot'
+    new_resp['pod'] = request.headers.get('host')
     return new_resp

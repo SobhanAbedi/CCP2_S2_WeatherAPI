@@ -32,7 +32,7 @@ async def get_weather(request: Request, city: str):
     if cached_resp is not None:
         resp = json.loads(cached_resp)
         resp['type'] = 'Cached'
-        resp['pod'] = request.headers.get('host')
+        resp['pod'] = platform.uname()[1]
         return resp
 
     if WEATHER_API_KEY is None:

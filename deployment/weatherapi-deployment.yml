@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: weatherapi
+  name: weatherapi
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: weatherapi
+  template:
+    metadata:
+      labels:
+        app: weatherapi
+    spec:
+      containers:
+        - name: weatherapi
+          image: sobhan2000/weatherapi
+          ports:
+            - containerPort: 8080
+          env:
+            - name: API_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: weatherapi-config
+                  key: api_port
+            - name: REDIS_ADD
+              valueFrom:
+                configMapKeyRef:
+                  name: weatherapi-config
+                  key: redis_add
+            - name: MAIN_LOC
+              valueFrom:
+                configMapKeyRef:
+                  name: weatherapi-config
+                  key: main_loc
+            - name: CACHE_TIME
+              valueFrom:
+                configMapKeyRef:
+                  name: weatherapi-config
+                  key: cache_time
+            - name: WEATHER_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: weatherapi-secret
+                  key: api_key

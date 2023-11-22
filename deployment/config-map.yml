@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: weatherapi-config
+data:
+  api_port: "8080"
+  redis_add: "redis-service:6379"
+  main_loc: "Tehran"
+  cache_time: "300"

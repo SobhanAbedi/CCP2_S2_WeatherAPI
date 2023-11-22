@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: weatherapi
-          image: sobhan2000/weatherapi:1.1
+          image: sobhan2000/weatherapi:1.1.1
           ports:
             - containerPort: 8080
           env:
@@ -45,10 +45,3 @@ spec:
                 secretKeyRef:
                   name: weatherapi-secret
                   key: api_key
-          volumeMounts:
-            - name: redis-data
-              mountPath: /data
-      volumes:
-        - name: redis-data
-          persistentVolumeClaim:
-            claimName: redis-pvc

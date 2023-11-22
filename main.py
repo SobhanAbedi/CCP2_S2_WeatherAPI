@@ -27,7 +27,7 @@ async def get_main_weather(request: Request):
 
 @app.get("/{city}")
 async def get_weather(request: Request, city: str):
-    cached_resp = await r.get(city)
+    cached_resp = r.get(city)
     if cached_resp is not None:
         resp = json.loads(cached_resp)
         resp['pod'] = request.get('host')
